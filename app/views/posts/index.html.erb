@@ -2,6 +2,7 @@
 	<ul>
 	  <% @posts.each do |post| %>
 	  	<li><%= post.title %></li>
+	  	<%= image_tag post.picture.url, class: 'uploaded_picture' %>
 		<% end %>
 	</ul>
 <% else %>

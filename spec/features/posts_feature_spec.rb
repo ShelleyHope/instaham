@@ -38,12 +38,14 @@ describe 'adding a post' do
       click_button 'Sign up'
 
       visit '/posts/new'
-    	fill_in 'Title', with: 'Shifie'
-    	fill_in 'Description', with: "yet another shite selfie"
-      click_button 'Add your picture or video'
+    	fill_in 'Title', with: 'New Shifie'
+    	fill_in 'Description', with: "Yet another shite selfie"
+      attach_file 'Picture', Rails.root.join('spec/images/Blue_diamond.png')
+      click_button 'Add your post'
 
     	expect(current_path).to eq '/posts'
-    	expect(page).to have_content 'Shifie'	
+    	expect(page).to have_content 'New Shifie'	
+      expect(page).to have_css 'img.uploaded_picture'
     end
   end
 end
