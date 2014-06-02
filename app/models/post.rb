@@ -8,4 +8,5 @@ class Post < ActiveRecord::Base
   	secret_access_key: Rails.application.secrets.s3_secret_key
   }
   validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
+  belongs_to :user
 end

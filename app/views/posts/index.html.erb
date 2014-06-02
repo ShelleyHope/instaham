@@ -2,7 +2,12 @@
 	<ul>
 	  <% @posts.each do |post| %>
 	  	<li><%= post.title %></li>
+	  	<li><%= post.description %></li>
 	  	<%= image_tag post.picture.url(:medium), class: 'uploaded_picture' %>
+
+	  	<% if post.user == current_user %>
+	  	  <%= link_to 'Delete', post_path(post), method: :delete %>
+	  	<% end %>
 		<% end %>
 	</ul>
 <% else %>
