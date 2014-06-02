@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  validates :title, presence: true
+
   has_attached_file :picture, 
   styles: { medium: '300x300>'},
   storage: :s3,

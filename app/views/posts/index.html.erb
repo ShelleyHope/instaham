@@ -6,6 +6,7 @@
 	  	<%= image_tag post.picture.url(:medium), class: 'uploaded_picture' %>
 
 	  	<% if post.user == current_user %>
+	  	  <%= link_to 'Change', edit_post_path(post) %>
 	  	  <%= link_to 'Delete', post_path(post), method: :delete %>
 	  	<% end %>
 		<% end %>

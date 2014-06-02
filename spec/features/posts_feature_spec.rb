@@ -72,7 +72,57 @@ describe 'deleting a post' do
 
     it "it doesn't display the delete link" do
       visit '/posts'
+      visit '/posts'
       expect(page).not_to have_link 'Delete'
     end
   end  
+end
+
+describe 'updating a post' do
+  context 'my post' do
+    before do
+      user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+      login_as user
+      Post.create(title: 'thing', description: 'a lovely thing', user: user)
+    end
+    context 'valid data' do
+      it 'saves the updated post' do
+        visit '/posts'
+        click_link 'Change'
+        fill_in 'Title', with: 'Edited thing'
+        fill_in 'Description', with: 'a lovelier thing'
+        attach_file 'Picture', Rails.root.join('spec/images/Blue_diamond.png')
+        
+        click_button 'Update'
+        expect(current_path).to eq '/posts'
+        expect(page).to have_content 'Edited thing'
+      end
+    end
+    # context 'invalid data' do
+    #   it 'generates an error message' do
+    #     visit '/posts'
+    #     click_link 'Change'
+    #     fill_in 'Title', with: ' '
+ 
+    #     click_button 'Update'
+    #     expect(page).to have_content 'error'
+    #     expect(page).to have_link 'Change'
+    #     expect(current_path).to eq '/posts'
+    #   end
+    # end
+  end
+
+  context "someone else's post" do
+    before do
+      me = User.create(email: 'me@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+      user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+      login_as user
+      Post.create(title: 'thing', description: 'a lovely thing', user: me)
+    end
+
+    it "doesn't display the edit link" do
+      visit '/posts'
+      expect(page).not_to have_link 'Change'
+    end 
+  end
 end

@@ -8,7 +8,6 @@ class PostsController < ApplicationController
 
 	def new
 		@post = Post.new
-
 	end
 
 	def create
@@ -27,4 +26,19 @@ class PostsController < ApplicationController
 	ensure
 		redirect_to '/posts'
 	end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+    if @post.update(params[:post].permit(:title, :description, :picture))
+      redirect_to '/posts'
+    else
+    	flash[:notice] = 'User not authorised to update'
+      render 'edit'
+    end
+  end
+
 end
