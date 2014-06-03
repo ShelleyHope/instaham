@@ -13,7 +13,7 @@ describe 'tagging posts' do
 			fill_in 'Tags', with: 'ace, fab'
 			click_button 'Add my post'
 
-			expect (page).to have_content '#ace'
-			expect (page).to have_content '#fab'
+			expect(page).to have_content '#ace'
+			expect(page).to have_content '#fab'
 		end
 end

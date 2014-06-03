@@ -10,7 +10,6 @@ describe 'posts index page' do
   context 'there are no posts to begin with' do
     context 'logged in' do
     	it 'displays a welcome message' do
-    
       	visit '/posts'
       	expect(page).to have_content "Welcome to Instaham!"
   		end
@@ -22,7 +21,6 @@ describe 'adding a post' do
   context 'logged out' do
     it "takes us to the sign up page" do
       visit '/posts/new'
-
       expect(page).to have_content 'Sign up'   
     end
   end
@@ -39,7 +37,6 @@ describe 'adding a post' do
     	fill_in 'Description', with: 'Yet another shite selfie'
       attach_file 'Picture', Rails.root.join('spec/images/Blue_diamond.png')
       click_button 'Add my post'
-
     	expect(current_path).to eq '/posts'
     	expect(page).to have_content 'New Shifie'	
       expect(page).to have_css 'img.uploaded_picture'

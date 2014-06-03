@@ -5,6 +5,11 @@
 	  	<li><%= post.description %></li>
 	  	<%= image_tag post.picture.url(:medium), class: 'uploaded_picture' %>
 
+
+	  	<% post.tags.each do |tag| %>
+	  	  <%= link_to tag.name, '#' %>
+	  	<% end %>
+
 	  	<% if post.user == current_user %>
 	  	  <%= link_to 'Edit post', edit_post_path(post) %>
 	  	  <%= link_to 'Delete', post_path(post), method: :delete %>
@@ -14,3 +19,4 @@
 <% else %>
   Welcome to Instaham!
 <% end %>
+

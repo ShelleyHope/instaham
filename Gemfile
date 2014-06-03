@@ -31,7 +31,7 @@ gem 'devise'
 group :development, :test do
 	gem 'rspec-rails'
 	gem 'capybara'
-	
+	gem 'debugger'
 end
 
 gem 'paperclip', github: 'thoughtbot/paperclip'

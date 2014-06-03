@@ -19,11 +19,24 @@ class Post < ActiveRecord::Base
 
   def tag_names=(tag_names)
     return if tag_names.blank?
-    if tag_names.chars.first == '#'
-      tag_names = tag_names[1..-1]
-    else
-      tag_names = tag_names
-    end  
-      tags.create(name: '#' + tag_names)
+    extract_tags(tag_names).uniq.each do |tag_name|
+      formatted_name = '#' + tag_name
+      
+      tag = Tag.find_or_create_by(name: formatted_name)
+      tags << tag
+    end
   end
+
+  private
+
+  def extract_tags(tag_names)
+    tag_names.split(/[\s,]+/).map do |tag_name|
+      if tag_name.start_with?('#')
+        tag_name[1..-1]
+      else
+        tag_name
+      end
+    end
+  end
+
 end
