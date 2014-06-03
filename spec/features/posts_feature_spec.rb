@@ -78,38 +78,41 @@ describe 'deleting a post' do
   end  
 end
 
-describe 'updating a post' do
+describe 'editing a post' do
   context 'my post' do
+  context 'valid data' do
     before do
       user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
       login_as user
       Post.create(title: 'thing', description: 'a lovely thing', user: user)
     end
-    context 'valid data' do
-      it 'saves the updated post' do
+      it 'saves the edited post' do
         visit '/posts'
-        click_link 'Change'
+        click_link 'Edit post'
         fill_in 'Title', with: 'Edited thing'
         fill_in 'Description', with: 'a lovelier thing'
         attach_file 'Picture', Rails.root.join('spec/images/Blue_diamond.png')
         
-        click_button 'Update'
+        click_button 'Confirm edits'
         expect(current_path).to eq '/posts'
         expect(page).to have_content 'Edited thing'
       end
     end
-    # context 'invalid data' do
-    #   it 'generates an error message' do
-    #     visit '/posts'
-    #     click_link 'Change'
-    #     fill_in 'Title', with: ' '
- 
-    #     click_button 'Update'
-    #     expect(page).to have_content 'error'
-    #     expect(page).to have_link 'Change'
-    #     expect(current_path).to eq '/posts'
-    #   end
-    # end
+    context 'invalid data' do
+      before do
+        user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+        login_as user
+        Post.create(title: 'thing', description: 'a lovely thing', user: user, id: 23 )
+      end
+        it 'generates an error message' do
+          visit '/posts'
+          click_link 'Edit post'
+          fill_in 'Title', with: ' '
+          click_button 'Confirm edits'
+          expect(page).to have_content 'error'
+          expect(current_path).to eq '/posts/23'
+        end
+    end
   end
 
   context "someone else's post" do
@@ -122,7 +125,7 @@ describe 'updating a post' do
 
     it "doesn't display the edit link" do
       visit '/posts'
-      expect(page).not_to have_link 'Change'
+      expect(page).not_to have_link 'Edit post'
     end 
   end
 end

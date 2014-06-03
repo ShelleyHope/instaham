@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     if @post.update(params[:post].permit(:title, :description, :picture))
       redirect_to '/posts'
     else
-    	flash[:notice] = 'User not authorised to update'
+    	flash[:notice] = 'Edits not saved'
       render 'edit'
     end
   end
