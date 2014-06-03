@@ -17,8 +17,11 @@
 	<%= f.text_area :description %>
 	<%= f.label :picture %> 
 	<%= f.file_field :picture %>
+	<%= f.label :tag_names, 'Tags' %> 
+	<%= f.text_field :tag_names %> 
+
 	<% if @post.new_record? %>
-		<%= f.submit "Add your post" %> 
+		<%= f.submit "Add my post" %> 
 	<% else %>
 		<%= f.submit "Confirm edits" %> 
 	<% end %> 

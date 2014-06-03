@@ -38,7 +38,7 @@ describe 'adding a post' do
     	fill_in 'Title', with: 'New Shifie'
     	fill_in 'Description', with: 'Yet another shite selfie'
       attach_file 'Picture', Rails.root.join('spec/images/Blue_diamond.png')
-      click_button 'Add your post'
+      click_button 'Add my post'
 
     	expect(current_path).to eq '/posts'
     	expect(page).to have_content 'New Shifie'	
@@ -129,3 +129,4 @@ describe 'editing a post' do
     end 
   end
 end
+
