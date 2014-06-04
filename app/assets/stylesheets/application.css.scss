@@ -13,3 +13,21 @@
  *= require_tree .
  *= require_self
  */
+@import 'bootstrap';
+
+body {
+	margin-top: 50px;
+}
+
+.jumbotron {
+  background: image-url('13-vintage.jpg');
+
+}
+
+.jumbotron .container {
+
+	background: rgba(255, 255, 255, 0.85);
+	padding: 30px 50px;
+	border-radius: 20px;
+
+}

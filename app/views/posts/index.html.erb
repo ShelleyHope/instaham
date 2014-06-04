@@ -1,22 +1,37 @@
-<% if @posts.any? %>
-	<ul>
-	  <% @posts.each do |post| %>
-	  	<li><%= post.title %></li>
-	  	<li><%= post.description %></li>
-	  	<%= image_tag post.picture.url(:medium), class: 'uploaded_picture' %>
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h2>Bonjour, Instahammers!</h2>
+        <p>Post your lovely photos here for all the world to see.</p>
+        <p>
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+        </p>
+      </div>
+    </div>
+     
+<div class='container'>
+	<% if @posts.none? %>
+	  Welcome to Instaham!
+	<% else %>
+   	<div class='row'>
+			<% @posts.each do |post| %>
+				<div class='col-md-4'>
+					<h4><%= post.title %></h4>
+					<p><%= post.description %></p>
+					<%= image_tag post.picture.url(:medium), class: 'uploaded_picture' %>
 
+					<% post.tags.each do |tag| %>
+					<%= link_to tag.name, '#' %>
+					<% end %>
 
-	  	<% post.tags.each do |tag| %>
-	  	  <%= link_to tag.name, '#' %>
-	  	<% end %>
+					<% if post.user == current_user %>
+						<%= link_to 'Edit post', edit_post_path(post) %>
+						<%= link_to 'Delete', post_path(post), method: :delete %>
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+	<% end %>
+</div> 
 
-	  	<% if post.user == current_user %>
-	  	  <%= link_to 'Edit post', edit_post_path(post) %>
-	  	  <%= link_to 'Delete', post_path(post), method: :delete %>
-	  	<% end %>
-		<% end %>
-	</ul>
-<% else %>
-  Welcome to Instaham!
-<% end %>
 
