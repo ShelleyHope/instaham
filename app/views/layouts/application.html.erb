@@ -7,9 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= notice %>
-<%= alert %>
+<div class="alert alert-success">
+  <%= flash[:notice] %>
+  <%= flash[:alert] %>
+</div>
 
 <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -22,22 +23,22 @@
       </button>
       <a class="navbar-brand" href="#">Instaham</a>
     </div>
-    <div class="navbar-collapse collapse">
-      <form class="navbar-form navbar-right" role="form">
+
+    <div class="navbar-collapse navbar-right collapse">
+      <%= form_for(:user, :url => session_path(:user), :html => { :class => "form-inline" }) do |f| %>
         <div class="form-group">
-          <input type="text" placeholder="Email" class="form-control">
+          <%= f.text_field :email, class: 'form-control' %>
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Password" class="form-control">
+          <%= f.password_field :password, class: 'form-control' %>
         </div>
-      
         <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, method: :destroy, class: "btn btn-success" %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-success" %>
         <%= link_to 'Edit user details', edit_user_registration_path, class: 'btn btn-success' %>
         <% else %>
-        <%= link_to 'Sign In', new_user_session_path, class: "btn btn-success" %>
+        <%= f.submit 'Sign in', class: 'btn btn-success' %>
         <% end %>
-      </form>
+      <% end %>
     </div><!--/.navbar-collapse -->
   </div>
 </div>

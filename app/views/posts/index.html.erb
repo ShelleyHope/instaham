@@ -12,22 +12,29 @@
 <div class='container'>
 	<% if @posts.none? %>
 	  Welcome to Instaham!
+
 	<% else %>
    	<div class='row'>
 			<% @posts.each do |post| %>
 				<div class='col-md-4'>
-					<h4><%= post.title %></h4>
-					<p><%= post.description %></p>
-					<%= image_tag post.picture.url(:medium), class: 'uploaded_picture' %>
-
-					<% post.tags.each do |tag| %>
-					<%= link_to tag.name, '#' %>
-					<% end %>
-
-					<% if post.user == current_user %>
-						<%= link_to 'Edit post', edit_post_path(post) %>
-						<%= link_to 'Delete', post_path(post), method: :delete %>
-					<% end %>
+					<div class="panel panel-default">
+					  <div class="panel-heading">
+					    <h3 class="panel-title"><%= post.title %></h3>
+					  </div>
+					  <div class="panel-body">
+					  	<div>
+						    <%= image_tag post.picture.url(:medium), class: 'uploaded_picture' %>
+						  </div>
+					    <p><%= post.description %></p>
+					    <% post.tags.each do |tag| %>
+							<%= link_to tag.name, '#', class: 'btn btn-sm btn-success' %>
+							<% end %>
+							<% if post.user == current_user %>
+								<%= link_to 'Edit post', edit_post_path(post), class: 'btn btn-lg btn-info' %>
+								<%= link_to 'Delete', post_path(post), method: :delete, class: 'btn btn-lg btn-danger' %>
+							<% end %>
+					  </div>
+				  </div>
 				</div>
 			<% end %>
 		</div>
