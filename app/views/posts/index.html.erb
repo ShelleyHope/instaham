@@ -26,9 +26,11 @@
 						    <%= image_tag post.picture.url(:medium), class: 'uploaded_picture' %>
 						  </div>
 					    <p><%= post.description %></p>
+					    <p>
 					    <% post.tags.each do |tag| %>
-							<%= link_to tag.name, '#', class: 'btn btn-sm btn-success' %>
+							<%= link_to "#{tag.name}", tag_path(tag) %>
 							<% end %>
+							</p>
 							<% if post.user == current_user %>
 								<%= link_to 'Edit post', edit_post_path(post), class: 'btn btn-lg btn-info' %>
 								<%= link_to 'Delete', post_path(post), method: :delete, class: 'btn btn-lg btn-danger' %>

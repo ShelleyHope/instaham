@@ -34,7 +34,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(params[:post].permit(:title, :description, :picture))
+    if @post.update(params[:post].permit(:title, :description, :picture, :tag_names))
       redirect_to '/posts'
     else
     	flash[:notice] = 'Edits not saved'
