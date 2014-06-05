@@ -27,7 +27,7 @@ describe 'adding a post' do
 
   context 'logged in' do
     before do
-      user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+      user = create(:user)
       login_as user
     end
 
@@ -97,9 +97,9 @@ describe 'editing a post' do
     end
     context 'invalid data' do
       before do
-        user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+        user = create(:user)
         login_as user
-        Post.create(title: 'thing', description: 'a lovely thing', user: user, id: 23 )
+        create(:post, user: user, id: 23 )
       end
         it 'generates an error message' do
           visit '/posts'
@@ -114,10 +114,10 @@ describe 'editing a post' do
 
   context "someone else's post" do
     before do
-      me = User.create(email: 'me@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
-      user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+      me = create(:user, email: 'mee@bee.co.uk')
+      user = create(:user)
       login_as user
-      Post.create(title: 'thing', description: 'a lovely thing', user: me)
+      create(:post, user: me)
     end
 
     it "doesn't display the edit link" do

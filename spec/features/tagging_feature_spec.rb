@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'tagging posts' do
 	before do
-	  user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+	  user = create(:user)
 	  login_as user  
 	end 
 		it 'displays the tags on the posts home page' do
