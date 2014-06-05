@@ -47,9 +47,9 @@ end
 describe 'deleting a post' do
   context 'my post' do
     before do
-      user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+      user = create(:user)
       login_as user
-      Post.create(title: 'thing', description: 'a lovely thing', user: user)
+      create(:post, user: user)
     end
 
     it 'removes the post from the posts index page' do
@@ -61,10 +61,10 @@ describe 'deleting a post' do
 
   context 'post belonging to another user' do
     before do
-      bill = User.create(email: 'bill@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
-      ted = User.create(email: 'ted@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
-      Post.create(title: 'bill', description: 'super', user: bill)
-      login_as ted
+      user = create(:user)
+      ted = create(:user, email: 'ted@a.com')
+      create(:post, user: ted)
+      login_as user
     end
 
     it "it doesn't display the delete link" do
@@ -79,9 +79,9 @@ describe 'editing a post' do
   context 'my post' do
   context 'valid data' do
     before do
-      user = User.create(email: 'a@a.com', password: 'qwertyui', password_confirmation: 'qwertyui')
+      user = create(:user)
       login_as user
-      Post.create(title: 'thing', description: 'a lovely thing', user: user)
+      create(:post, user: user)
     end
       it 'saves the edited post' do
         visit '/posts'

@@ -33,6 +33,7 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'capybara'
 	gem 'debugger'
+	gem 'factory_girl_rails'
 end
 
 gem 'paperclip', github: 'thoughtbot/paperclip'
