@@ -32,13 +32,32 @@
 							<% if post.user == current_user %>
 								<%= link_to 'Edit post', edit_post_path(post), class: 'btn btn-lg btn-info' %>
 								<%= link_to 'Delete', post_path(post), method: :delete, class: 'btn btn-lg btn-danger' %>
-								<%= link_to 'Show more', '#', class: 'btn btn-lg btn-info' %>
+								<%= link_to 'Show more', '#', class: 'btn btn-lg btn-info', 
+								  data: { toggle: 'modal', target: ".image-modal-#{post.id}" } %>
 							<% end %>
 					  </div>
 				  </div>
 				</div>
+
+				<div class="modal fade image-modal-<%= post.id %>">
+				  <div class="modal-dialog modal-lg">
+				    <div class="modal-content">
+				       <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				        <h4 class="modal-title" id="myModalLabel"><%= post.title %></h4>
+				      </div>
+				      <div class="modal-body">
+				      	<%= image_tag post.picture.url %>
+							</div>
+				    </div>
+				  </div>
+				</div>
+
 			<% end %>
 		</div>
+
+		
+
 	<% end %>
 </div> 
 
