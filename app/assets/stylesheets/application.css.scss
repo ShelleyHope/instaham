@@ -42,3 +42,37 @@ body {
   max-width: 100%
 
 }
+
+.btn-lime {
+  background-color: hsl(72, 100%, 66%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e6ff84", endColorstr="#dcff51");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#e6ff84), to(#dcff51));
+  background-image: -moz-linear-gradient(top, #e6ff84, #dcff51);
+  background-image: -ms-linear-gradient(top, #e6ff84, #dcff51);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #e6ff84), color-stop(100%, #dcff51));
+  background-image: -webkit-linear-gradient(top, #e6ff84, #dcff51);
+  background-image: -o-linear-gradient(top, #e6ff84, #dcff51);
+  background-image: linear-gradient(#e6ff84, #dcff51);
+  border-color: #dcff51 #dcff51 hsl(72, 100%, 63.5%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.16);
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn-pink {
+  background-color: hsl(343, 100%, 90%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffe0e9", endColorstr="#feccda");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#ffe0e9), to(#feccda));
+  background-image: -moz-linear-gradient(top, #ffe0e9, #feccda);
+  background-image: -ms-linear-gradient(top, #ffe0e9, #feccda);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffe0e9), color-stop(100%, #feccda));
+  background-image: -webkit-linear-gradient(top, #ffe0e9, #feccda);
+  background-image: -o-linear-gradient(top, #ffe0e9, #feccda);
+  background-image: linear-gradient(#ffe0e9, #feccda);
+  border-color: #feccda #feccda hsl(343, 100%, 89%);
+  color: #333 !important;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.06);
+  -webkit-font-smoothing: antialiased;
+}

@@ -4,7 +4,7 @@
         <h2>Bonjour, Instahammers!</h2>
         <p>Post your lovely photos here for all the world to see.</p>
         <p>
-        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+        <%= link_to 'Sign Up', new_user_registration_path, class: 'btn btn-primary btn-lg btn-custom' %>
         </p>
       </div>
     </div>
@@ -32,10 +32,11 @@
 							<% end %>
 							</p>
 							<% if post.user == current_user %>
-								<%= link_to 'Edit post', edit_post_path(post), class: 'btn btn-lg btn-info' %>
-								<%= link_to 'Delete', post_path(post), method: :delete, class: 'btn btn-lg btn-danger' %>
-								<%= link_to 'Show more', '#', class: 'btn btn-lg btn-info', 
+								<%= link_to 'Edit post', edit_post_path(post), class: 'btn btn-md btn-lime' %>
+								<%= link_to 'Delete', post_path(post), method: :delete, class: 'btn btn-md btn-danger' %>
+								<%= link_to 'Show more', '#', class: 'btn btn-md btn-pink', 
 								  data: { toggle: 'modal', target: ".image-modal-#{post.id}" } %>
+								<%= link_to 'G 0', post_like_path(post), method: :post, class: 'btn btn-md btn-pink' %>
 							<% end %>
 					  </div>
 				  </div>

@@ -33,10 +33,10 @@
           <%= f.password_field :password, class: 'form-control' %>
         </div>
         <% if user_signed_in? %>
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-success" %>
-        <%= link_to 'Edit user details', edit_user_registration_path, class: 'btn btn-success' %>
+        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-warning" %>
+        <%= link_to 'Edit user details', edit_user_registration_path, class: 'btn btn-custom' %>
         <% else %>
-        <%= f.submit 'Sign in', class: 'btn btn-success' %>
+        <%= f.submit 'Sign in', class: 'btn btn-lime' %>
         <% end %>
       <% end %>
     </div><!--/.navbar-collapse -->
